@@ -1,46 +1,50 @@
-# Getting Started with Create React App
+# Projeto EFood
+Este projeto é uma interface de uma plataforma de delivery de comida (eFood), desenvolvido para fins de estudo e prática de desenvolvimento web front-end. O site é responsivo e replica elementos visuais de aplicativos de entrega, contendo listagem de restaurantes parceiros e páginas de cardápios com detalhes dos pratos.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 🚀 Tecnologias Utilizadas
 
-## Available Scripts
+O projeto foi construído utilizando as seguintes ferramentas e linguagens:
 
-In the project directory, you can run:
+* React: Biblioteca principal para a construção da interface de usuário.
 
-### `npm start`
+* TypeScript: Superset de JavaScript que adiciona tipagem estática para um código mais robusto e seguro.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+* Styled Components: Biblioteca de CSS-in-JS para estilização avançada, dinâmica e escopada aos componentes.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+* React Router DOM: Utilizado para o gerenciamento de rotas e navegação da aplicação (SPA).
 
-### `npm test`
+* HTML: Estruturação semântica das páginas.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 📦 Funcionalidades
 
-### `npm run build`
+* Home (Lista de Restaurantes): Exibição de restaurantes parceiros através de cards detalhados, mostrando a avaliação (estrelas), tipo de culinária, capa e descrição do estabelecimento.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+* Perfil do Restaurante: Página interna contendo um banner de destaque e o cardápio específico do restaurante escolhido.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+* Cards de Produtos: Listagem dos pratos disponíveis no cardápio, com foto, descrição e opções de interação.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+* Componentização: Estrutura altamente modularizada (Header, Footer, Banner, ProductCard, RestaurantCard) para fácil manutenção e escalabilidade.
 
-### `npm run eject`
+# 🛠️ Como Executar o Projeto
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Para rodar este projeto localmente, você precisará ter o Node.js instalado.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Instale as dependências:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+``` Bash
+npm install
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Inicie o servidor de desenvolvimento (para observar as mudanças em tempo real):
+``` Bash
+npm start
+```
 
-## Learn More
+Compile o projeto: Para gerar a build de produção com os arquivos otimizados, execute:
+``` Bash
+npm run build
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 🌐 Web
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Link na [Vercel](https://projeto-efood-hector.vercel.app)
