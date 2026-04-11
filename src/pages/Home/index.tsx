@@ -1,19 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 import RestaurantCard from '../../components/RestaurantCard';
 import { Grid } from './styles';
 import { Restaurant } from '../../utils/data';
-import { MainContainer } from '../../styles/global';
+import { MainContainer, Message } from '../../styles/global';
+import { useGetRestaurantesQuery } from '../../services/api';
 
 const Home: React.FC = () => {
-  const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
+  const { data: restaurants, isLoading, error } = useGetRestaurantesQuery();
 
-  useEffect(() => {
-    fetch('https://api-ebac.vercel.app/api/efood/restaurantes')
-      .then((res) => res.json())
-      .then((data) => setRestaurants(data))
-      .catch((error) => console.error('Erro ao carregar os restaurantes:', error));
-  }, []);
+  if (isLoading) return <Message>Carregando restaurantes...</Message>;
+  if (error || !restaurants) return <Message>Erro ao carregar os restaurantes.</Message>;
 
   const getTags = (restaurant: Restaurant) => {
     const tags = [];

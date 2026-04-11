@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
+import { add, open } from '../../store/reducers/cart';
+import { Dish } from '../../utils/data';
 import { 
   Card, 
   Image, 
@@ -16,6 +19,7 @@ import {
 import CloseImg from '../../assets/close.png';
 
 type ProductCardProps = {
+  id: number;
   image: string;
   title: string;
   description: string;
@@ -23,11 +27,28 @@ type ProductCardProps = {
   portion: string;
 };
 
-const ProductCard: React.FC<ProductCardProps> = ({ title, description, image, price, portion }) => {
+export const formataPreco = (preco: number) => {
+    return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(preco);
+}
+
+const ProductCard: React.FC<ProductCardProps> = ({ id, title, description, image, price, portion }) => {
   const [modalEstaAberto, setModalEstaAberto] = useState(false);
 
-  const formatarPreco = (preco: number) => {
-    return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(preco);
+  const dispatch = useDispatch();
+  
+  const addToCart = () => {
+    const prato: Dish = {
+      id,
+      nome: title,
+      descricao: description,
+      foto: image,
+      preco: price,
+      porcao: portion,
+    };
+    
+    dispatch(add(prato));
+    dispatch(open());
+    setModalEstaAberto(false);
   };
 
   const getDescricaoCurta = (texto: string) => {
@@ -43,7 +64,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ title, description, image, pr
         <Image src={image} alt={title} />
         <Title>{title}</Title>
         <Description>{getDescricaoCurta(description)}</Description>
-        <Button onClick={() => setModalEstaAberto(true)}>Mais detalhes</Button>
+        <Button title='Mais detalhes' type='button' onClick={() => setModalEstaAberto(true)}>Mais detalhes</Button>
       </Card>
 
       {modalEstaAberto && (
@@ -56,7 +77,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ title, description, image, pr
                 <h4>{title}</h4>
                 <p>{description}</p>
                 <p>Serve: {portion}</p>
-                <Button>Adicionar ao carrinho - {formatarPreco(price)}</Button>
+                <Button title='Adicionar ao carrinho' type='button' onClick={addToCart}> Adicionar ao carrinho - {formataPreco(price)} </Button>
               </div>
             </ModalContent>
           </ModalContainer>

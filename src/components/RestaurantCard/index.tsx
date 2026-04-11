@@ -28,7 +28,7 @@ const RestaurantCard: React.FC<RestaurantCardProps> = ({ id, title, rating, desc
           <span>{rating}</span>
         </HeaderRow>
         <Description>{description}</Description>
-        <ButtonLink to={`/perfil/${id}`}>Saiba mais</ButtonLink>
+        <ButtonLink title='Saiba mais' type='button' to={`/perfil/${id}`}>Saiba mais</ButtonLink>
       </Content>
     </Card>
   );

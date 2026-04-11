@@ -1,26 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
 
 import Banner from '../../components/Banner';
 import ProductCard from '../../components/ProductCard';
-import { Restaurant } from '../../utils/data';
 import { Grid } from './styles';
-import { MainContainer } from '../../styles/global';
+import { MainContainer, Message } from '../../styles/global';
+import { useGetRestauranteByIdQuery } from '../../services/api';
 
 const Perfil: React.FC = () => {
   const { id } = useParams<{ id: string }>();
-  const [restaurant, setRestaurant] = useState<Restaurant>();
+  
+  const { data: restaurant, isLoading, error } = useGetRestauranteByIdQuery(id as string);
 
-  useEffect(() => {
-    fetch(`https://api-ebac.vercel.app/api/efood/restaurantes/${id}`)
-      .then((res) => res.json())
-      .then((data) => setRestaurant(data))
-      .catch((error) => console.error('Erro ao carregar o restaurante:', error));
-  }, [id]);
-
-  if (!restaurant) {
-    return <div>Carregando...</div>;
-  }
+  if (isLoading) return <Message>Carregando...</Message>;
+  if (error || !restaurant) return <Message>Erro ao carregar o restaurante.</Message>;
 
   const cardapio = restaurant.cardapio || [];
 
@@ -36,6 +29,7 @@ const Perfil: React.FC = () => {
           {cardapio.map((dish) => (
             <ProductCard 
               key={dish.id}
+              id={dish.id}
               title={dish.nome}
               description={dish.descricao}
               image={dish.foto}

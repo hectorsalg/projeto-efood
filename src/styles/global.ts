@@ -4,7 +4,8 @@ export const colors = {
   primary : '#E66767',
   secondary: '#FFEBD9',
   tertiary: '#FFF8F2',
-  white: '#FFFFFF'
+  white: '#FFFFFF',
+  black: '#000000'
 }
 
 export const GlobalStyle = createGlobalStyle`
@@ -34,3 +35,9 @@ export const MainContainer = styled.main`
   margin: 56px auto 120px;
   padding: 0 20px;
 `;
+
+export const Message = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
