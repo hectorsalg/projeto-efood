@@ -11,7 +11,18 @@ export const api = createApi({
     getRestauranteById: builder.query<Restaurant, string>({
       query: (id) => `restaurantes/${id}`,
     }),
+    purchase: builder.mutation<CheckoutResponse, CheckoutPayload>({
+      query: (body) => ({
+        url: 'checkout',
+        method: 'POST',
+        body,
+      }),
+    }),
   }),
 });
 
-export const { useGetRestaurantesQuery, useGetRestauranteByIdQuery } = api;
+export const { 
+  useGetRestaurantesQuery, 
+  useGetRestauranteByIdQuery,
+  usePurchaseMutation
+} = api;
