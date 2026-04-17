@@ -1,10 +1,11 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
+import { ClockLoader } from 'react-spinners';
 
 import Banner from '../../components/Banner';
 import ProductCard from '../../components/ProductCard';
 import { Grid } from './styles';
-import { MainContainer, Message } from '../../styles/global';
+import { colors, MainContainer, Message } from '../../styles/global';
 import { useGetRestauranteByIdQuery } from '../../services/api';
 
 const Perfil: React.FC = () => {
@@ -12,7 +13,7 @@ const Perfil: React.FC = () => {
   
   const { data: restaurant, isLoading, error } = useGetRestauranteByIdQuery(id as string);
 
-  if (isLoading) return <Message>Carregando...</Message>;
+  if (isLoading) return <Message><ClockLoader color={colors.primary} /></Message>;
   if (error || !restaurant) return <Message>Erro ao carregar o restaurante.</Message>;
 
   const cardapio = restaurant.cardapio || [];

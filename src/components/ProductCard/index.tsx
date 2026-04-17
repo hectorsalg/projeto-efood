@@ -17,6 +17,7 @@ import {
 } from './styles';
 
 import CloseImg from '../../assets/close.png';
+import { parseToBRL } from '../../utils/functions';
 
 type ProductCardProps = {
   id: number;
@@ -26,10 +27,6 @@ type ProductCardProps = {
   price: number;
   portion: string;
 };
-
-export const formataPreco = (preco: number) => {
-    return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(preco);
-}
 
 const ProductCard: React.FC<ProductCardProps> = ({ id, title, description, image, price, portion }) => {
   const [modalEstaAberto, setModalEstaAberto] = useState(false);
@@ -77,7 +74,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ id, title, description, image
                 <h4>{title}</h4>
                 <p>{description}</p>
                 <p>Serve: {portion}</p>
-                <Button title='Adicionar ao carrinho' type='button' onClick={addToCart}> Adicionar ao carrinho - {formataPreco(price)} </Button>
+                <Button title='Adicionar ao carrinho' type='button' onClick={addToCart}> Adicionar ao carrinho - {parseToBRL(price)} </Button>
               </div>
             </ModalContent>
           </ModalContainer>

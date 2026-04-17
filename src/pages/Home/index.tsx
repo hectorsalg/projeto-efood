@@ -1,15 +1,15 @@
 import React from 'react';
-
+import { ClockLoader } from 'react-spinners';
 import RestaurantCard from '../../components/RestaurantCard';
 import { Grid } from './styles';
 import { Restaurant } from '../../utils/data';
-import { MainContainer, Message } from '../../styles/global';
+import { colors, MainContainer, Message } from '../../styles/global';
 import { useGetRestaurantesQuery } from '../../services/api';
 
 const Home: React.FC = () => {
   const { data: restaurants, isLoading, error } = useGetRestaurantesQuery();
 
-  if (isLoading) return <Message>Carregando restaurantes...</Message>;
+  if (isLoading) return <Message><ClockLoader color={colors.primary} /></Message>;
   if (error || !restaurants) return <Message>Erro ao carregar os restaurantes.</Message>;
 
   const getTags = (restaurant: Restaurant) => {
