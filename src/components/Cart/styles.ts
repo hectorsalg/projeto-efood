@@ -174,3 +174,8 @@ export const Row = styled.div`
     flex: 1;
   }
 `;
+
+export const Empty = styled.p`
+  color: ${colors.secondary};
+  text-align: center;
+`
